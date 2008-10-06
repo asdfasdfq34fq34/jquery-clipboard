@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">    
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>jQuery Click-to-Clipboard prototype</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Language" content="en-us" />
+    <script src="jquery-1.2.6.js" type="text/javascript"></script>
+    <script src="jquery.flash.js" type="text/javascript"></script>
+    <script src="jquery.clipboard.js" type="text/javascript"></script>
+    <style type="text/css" media="screen">
+    /*<![CDATA[*/
+#embed-form {
+float: left;
+position: relative;
+}
+
+#embed-form input {
+font-size: 1.6em;
+width: 180px;
+}
+
+#embed-form .copied-to-clipboard {
+position: absolute;
+top: 50%;
+right: 40px;
+background: url(copied-to-clipboard.png) center no-repeat;
+height: 41px;
+width: 86px;
+overflow: hidden;
+text-indent: -9999em;
+margin-top: -20px;
+}
+    /*]]>*/
+    </style>
+</head>
+<body id="vote">
+  <div id="container" class="selfclear">
+    <form id="embed-form" action="#"><label for="share-link">Share link:</label><input id="share-link" name="share-link" type="text" size="10" value="http://path-to-image-share" /></form>
+  </div><!-- /#container -->
+  <script type="text/javascript">
+//<![CDATA[
+// Based upon http://www.jeffothy.com/weblog/clipboard-copy/
+// updated to be more jQuery-y, as well as work around some quirks in Opera's 
+// execCommand implementation.
+// Additionally, since IE prompts the user for confirmation if window.clipboardData or
+// createTextRange().execCommand('copy') are invoked, we're trying to use flash first
+$('#share-link').clickToClipboard();
+
+//]]>
+  </script>
+</body>
+</html>
