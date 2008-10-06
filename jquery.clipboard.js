@@ -30,7 +30,7 @@
 			  obj.click(function(event) {
 					$('.flashcopier').flash({ src: '_clipboard.swf', width: 0, height: 0, flashvars: {clipboard: obj.value} }, { update: false });
 		      obj.next('.copied-to-clipboard').show();
-		      setTimeout("obj.next('.copied-to-clipboard').fadeOut('slow')", 1000);
+		      setTimeout("obj.next('.copied-to-clipboard').fadeOut(options.fadeoutLength)", options.fadeoutTimer);
 		      obj.blur();
 				});
 				$('<div class="flashcopier">').appendTo('body');
@@ -38,12 +38,12 @@
 			  obj.focus(function(event) {
 				  window.clipboardData.setData("Text",sourceElement.value);
 		      obj.next('.copied-to-clipboard').show();
-		      setTimeout("obj.next('.copied-to-clipboard').fadeOut('slow');", 1000);
+		      setTimeout("obj.next('.copied-to-clipboard').fadeOut(options.fadeoutLength);", options.fadeoutTimer);
 		      obj.blur();
 				});  
 			}
    		this.blur(function(event){
-		    setTimeout("this.next('.copied-to-clipboard').fadeOut('slow');", 1000);
+		    setTimeout("this.next('.copied-to-clipboard').fadeOut(options.fadeoutLength);", options.fadeoutTimer);
 		  });
 	  });
   };
