@@ -53,15 +53,14 @@
 			(options.clipboardTextInsert == "before") ? $(insertText).insertBefore(target[intIndex]) : $(insertText).insertAfter(target[intIndex]);
 			if (hasFlash) {
 				obj.click(function(event) {
-					$('.flashcopier').flash({ src: '_clipboard.swf', width: 0, height: 0, flashvars: {clipboard: obj.value} }, { update: false });
-
+					$('.flashcopier').flash({ src: '_clipboard.swf', width: 0, height: 0, flashvars: {clipboard: obj.val()} }, { update: false });
 					(options.clipboardTextInsert == "before") ? target[intIndex].prev('.copied-to-clipboard:first').show() :	target[intIndex].next('.copied-to-clipboard:first').show();		
 					
 					(options.clipboardTextInsert == "before") ? setTimeout("$('#" + target[intIndex].attr("id")+"').prev('.copied-to-clipboard:first').fadeOut(" + options.fadeoutLength + ")", options.fadeoutTimer) : setTimeout("$('#" + target[intIndex].attr("id")+"').next('.copied-to-clipboard:first').fadeOut(" + options.fadeoutLength + ")", options.fadeoutTimer);
 					
 					obj.blur();
 				});
-				$('<div class="flashcopier">').appendTo('body');
+				if(!($('div.flashcopier').length > 0)) { $('<div class="flashcopier">').appendTo('body');}
 			} else if (window.clipboardData && sourceElement.createTextRange()) {
 				obj.focus(function(event) {
 					window.clipboardData.setData("Text",sourceElement.value);
